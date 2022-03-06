@@ -7,6 +7,8 @@ import torch.optim as optim
 import copy
 import sys
 import sr
+import networkconfig as nc
+
 
 seed = 0
 torch.manual_seed(seed)
@@ -20,43 +22,11 @@ NSAMPLE = 1024
 U = 10
 J = 1
 
+
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide
 device = torch.device("cuda:0")
 
-class Net(nn.Module):
-    nlayer = 2
-    nc = (8, 8)
-    fs = (2, 2)
-
-    def __init__(self):
-        super(Net, self).__init__()
-        conv_layers = []
-        for n in range(Net.nlayer):
-            in_chan = 1 if n == 0 else Net.nc[n-1]
-            conv_layers.append(cn.ComplexConv2d(in_chan, Net.nc[n], Net.fs[n]))
-        self.conv_layers = nn.ModuleList(conv_layers)
-        #self.fc = cn.ComplexLinear(L*L*Net.nc[Net.nlayer-1], 2, bias=False)
-        self.fc = cn.ComplexLinear(L*L*Net.nc[Net.nlayer-1], 1, bias=False)
-        self.crelu = cn.ComplexReLU()
-
-    def forward(self, x):
-        x = x.view(-1, 1, L, L)
-        for n in range(Net.nlayer):
-            x = F.pad(x, (0, 1, 0, 1),mode='circular')  # padding for 2x2
-            x = self.crelu(self.conv_layers[n](x))
-        x = x.view(-1, L*L*Net.nc[Net.nlayer-1])
-        x = self.fc(x)
-        x = x.view(-1)
-        #x = x.view(-1, 2)
-        #x = x[:,0] + torch.log(x[:,1])
-        return x
-
-    def forward_only(self, x):
-        x = torch.from_numpy(x.astype(np.complex64)).to(device)
-        with torch.no_grad():
-            output = self.forward(x)
-        return output.to("cpu").detach().numpy()
 
 class SampledState:
     thermalization_n = 1024
@@ -167,7 +137,7 @@ def Fidelity(net1, state1, net2, lam):
 
 # -------------- main -----------------
 
-net = Net()
+net = nc.Net()
 net = net.to(device)
 
 

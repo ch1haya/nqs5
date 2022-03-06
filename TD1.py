@@ -8,6 +8,7 @@ import copy
 import sys
 import LS1 as ls
 import timedev as timedev
+import networkconfig as nc
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -25,43 +26,12 @@ NSAMPLE = 1024
 U = 10
 J = 1
 
+learn_r = 1000
+
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide
 device = torch.device("cuda:0")
 
-class Net(nn.Module):
-    nlayer = 2
-    nc = (8, 8)
-    fs = (2, 2)
-
-    def __init__(self):
-        super(Net, self).__init__()
-        conv_layers = []
-        for n in range(Net.nlayer):
-            in_chan = 1 if n == 0 else Net.nc[n-1]
-            conv_layers.append(cn.ComplexConv2d(in_chan, Net.nc[n], Net.fs[n]))
-        self.conv_layers = nn.ModuleList(conv_layers)
-        #self.fc = cn.ComplexLinear(L*L*Net.nc[Net.nlayer-1], 2, bias=False)
-        self.fc = cn.ComplexLinear(L*L*Net.nc[Net.nlayer-1], 1, bias=False)
-        self.crelu = cn.ComplexReLU()
-
-    def forward(self, x):
-        x = x.view(-1, 1, L, L)
-        for n in range(Net.nlayer):
-            x = F.pad(x, (0, 1, 0, 1),mode ='circular')  # padding for 2x2
-            x = self.crelu(self.conv_layers[n](x))
-        x = x.view(-1, L*L*Net.nc[Net.nlayer-1])
-        x = self.fc(x)
-        x = x.view(-1)
-        #x = x.view(-1, 2)
-        #x = x[:,0] + torch.log(x[:,1])
-        return x
-
-    def forward_only(self, x):
-        x = torch.from_numpy(x.astype(np.complex64)).to(device)
-        with torch.no_grad():
-            output = self.forward(x)
-        return output.to("cpu").detach().numpy()
 
 class SampledState:
     thermalization_n = 1024
@@ -170,9 +140,9 @@ def Fidelity(net1, state1, net2, lam):
     f3 /= pqn
     return np.abs(f)**2 / (a2_mean * f3)
 
-ls.main2(1000)
+ls.main2(learn_r)
 
-net = Net()
+net = nc.Net()
 net.load_state_dict(torch.load('learnedst'))
 
 state = SampledState()
@@ -185,7 +155,7 @@ cn.disable_hooks()
 
 U = 1;
 delta = 1e-3
-tole = 1e-6
+tole = 1e-7
 
 
 counter = 0
@@ -200,6 +170,12 @@ fluc = []
 
 #main
 
+print(net)
+print('original U:10')
+print('to U,-t,delta,NSAMPLE',U,-J,delta,NSAMPLE)
+print('site :',L)
+
+
 
 while True:
     for i in range(36):
@@ -208,18 +184,18 @@ while True:
     ene = eloc.mean()
     energy.append(ene.real)
     #dw, x, sigma  = timedev.caldW(net, state.num, eloc, delta,tole)
-    timedev.NewtonMethod(net,state.num,eloc,delta,tole)
+    dw = timedev.NewtonMethod(net,state.num,eloc,delta,tole)
+    #timedev.NewtonMethod(net,state.num,eloc,delta,tole)
     site = state.num
     site = site.reshape(NSAMPLE,1,L*L)
     flucs = np.var(site, axis=0)
     flucmean = np.mean(flucs)
     fluc.append(flucmean)
-    print(counter, ene.real, flucmean, flush=True)
+    print(delta*counter, ene.real, flucmean,np.mean(dw),flush=True)
     count.append(counter)
     counter += 1
     if len(count) > 4:
-    #if ene > 0:
-      if counter > 300:
+      if counter*delta > 2:
         print('break!')
         #plot
         fig = plt.figure()

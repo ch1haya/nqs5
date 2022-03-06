@@ -65,25 +65,11 @@ def NewtonMethod(net, inputs, eloc, delta,tole):
             - (Ok_avg.conj() * Ok_avg.dot(x)).real
 
     Fk = np.matmul(eloc, Ok.conj()) / sample_num - eloc.mean() * Ok_avg.conj()
-
-    #u, sigma,v = np.linalg.svd(Skk)
-    #sigma = sigma.real
-    #sigma_inv = 1/np.sqrt(sigma)
-    #Qk = np.matmul(Ok,v) - np.matmul(Ok_avg,v)
-    #Qk_avg = np.mean(Qk,axis = 0)
-
-    #rk = np.matmul(eloc, Qk.conj()) / sample_num - eloc.mean() * Qk_avg.conj()
-    #rk2 = rk**2
-    #VarH = np.dot(eloc,eloc)/NSAMPLE - eloc.mean()*eloc.mean()
-    #SNR = NSAMPLE**(0.5)/(1 + ((sigma.real/rk2.imag)*VarH))**0.5
-    #print(sigma)
-    #noise = 1 + (lamda/SNR.real)**6
-    #dw =  sigma_inv.real*rk.imag
     op = LinearOperator((nparam, nparam), matvec=MultiplySkk)
-    #x, exitCode = minres(op, Fk.imag)
-    #dw =  np.matmul(Sinv,Fk.imag)
-    #print(dw,dw.shape)
     x, exitCode = minres(op, Fk.imag,tol=tole)          #if you want to use Newton,take this#.
     dw = delta*x
+    dw_np = dw
     dw = torch.from_numpy(dw.astype(np.float32)).to(device)
     UpdateNetworkParameters(net, dw)
+    return dw_np
+    
