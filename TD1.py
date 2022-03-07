@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 0
+seed = 2
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -264,7 +264,12 @@ print('original U:10')
 print('to U,-t,delta,NSAMPLE',U,-J,delta,NSAMPLE)
 print('site :',L)
 
-#td_sr(1)
-td_conv(1)
+select = 1
+if select == 1:
+    print('use sr')
+    td_sr(2.0)
+else:
+    print('use conv')
+    td_conv(1)
 
 
