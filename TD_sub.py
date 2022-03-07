@@ -1,8 +1,3 @@
-import os
-os.environ["OPENBLAS_NUM_THREADS"] = "32"
-os.environ["MKL_NUM_THREADS"] = "32"
-os.environ["VECLIB_NUM_THREADS"] = "32"
-
 import numpy as np
 import torch
 import torch.nn as nn
@@ -197,7 +192,7 @@ def td_conv(time):
         print(counter * delta, Energy(net, state), DeltaN(net, state), err, flush=True)
         err = 0
         for b in range(4):
-            optimizer = optim.Adam(net.parameters(), lr=0.001)
+            optimizer = optim.Adam(net.parameters(), lr=1.0)
             #schedular = optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=100, T_mult=2, eta_min=0.01)#usewith SGD
             schedular = optim.lr_scheduler.StepLR(optimizer,step_size = 2,gamma = 0.1) #please refine
             net_old = copy.deepcopy(net)
@@ -208,7 +203,7 @@ def td_conv(time):
             logpsi_old = net_old.forward_only(state.num)
             inputs = torch.from_numpy(state.num.astype(np.complex64)).to(device)
 
-            for cnt in range(100):
+            for cnt in range(1000):
             #for cnt in range(100+200+400+800):
                 logpsi_new = net.forward_only(state.num)
                 a = np.exp(logpsi_new - logpsi_old)
@@ -226,7 +221,7 @@ def td_conv(time):
                 schedular.step()
                 err += 1 - Fidelity(net_old, state, net, lam[b])
             counter += 1
-            if delta*counter > time:
+            if delta*count > time:
                 break
 
 
