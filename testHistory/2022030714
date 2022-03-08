@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "td_sr1.py", line 14, in <module>
+    import LS1 as ls
+  File "/home/kato/nqs5/LS1.py", line 150, in <module>
+    state.thermalize(net)
+  File "/home/kato/nqs5/LS1.py", line 59, in thermalize
+    self.try_flip(net)
+  File "/home/kato/nqs5/LS1.py", line 50, in try_flip
+    lnpsi_org = net.forward_only(self.num)
+  File "/home/kato/nqs5/networkconfig.py", line 47, in forward_only
+    output = self.forward(x)
+  File "/home/kato/nqs5/networkconfig.py", line 36, in forward
+    x = self.crelu(self.conv_layers[n](x))
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/kato/nqs5/complexnet.py", line 19, in forward
+    x_real_out = self.conv_real(x.real) - self.conv_imag(x.imag)
+KeyboardInterrupt

@@ -3026,3 +3026,21 @@ use sr
 998 (-6.737298-0.004437304j)
 999 (-6.728054+0.0020461916j)
 break!
+Traceback (most recent call last):
+  File "td_sr1.py", line 14, in <module>
+    import LS1 as ls
+  File "/home/kato/nqs5/LS1.py", line 141, in <module>
+    net = net.to(device)
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 899, in to
+    return self._apply(convert)
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 570, in _apply
+    module._apply(fn)
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 570, in _apply
+    module._apply(fn)
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 570, in _apply
+    module._apply(fn)
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 593, in _apply
+    param_applied = fn(param)
+  File "/home/kato/nqs/lib/python3.6/site-packages/torch/nn/modules/module.py", line 897, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+KeyboardInterrupt

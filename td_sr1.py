@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 4
+seed = 0
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -31,7 +31,7 @@ NSAMPLE = 1024
 U = 10
 J = 1
 
-learn_r = 1000
+learn_r = 2000
 
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide
