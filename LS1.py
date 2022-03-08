@@ -144,7 +144,7 @@ net = net.to(device)
 cn.add_hooks(net)
 cn.disable_hooks()
 
-optimizer = optim.Adam(net.parameters())
+optimizer = optim.RAdam(net.parameters(),lr = 0.001)
 
 state = SampledState()
 state.thermalize(net)
@@ -181,6 +181,7 @@ def main2(i):
 
         print(counter, ene, file=sys.stderr)
     print("finish")
+    print("used Radam and learning schedular(stepLR)")
     PATH = 'learnedst'
     torch.save(net.state_dict(),PATH)
 

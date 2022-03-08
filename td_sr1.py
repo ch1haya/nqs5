@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 0
+seed = 10
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -31,7 +31,9 @@ NSAMPLE = 1024
 U = 10
 J = 1
 
-learn_r = 2000
+learn_r = 1000
+select = 1 #2を入力すると逐次収束法で計算されます
+
 
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide
@@ -263,8 +265,9 @@ print(net)
 print('original U:10')
 print('to U,-t,delta,NSAMPLE',U,-J,delta,NSAMPLE)
 print('site :',L)
+print('seed:',seed)
 
-select = 1
+
 if select == 1:
     print('use sr')
     td_sr(3.0)
