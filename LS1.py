@@ -180,7 +180,7 @@ def main2(i):
         loss = (torch.conj(outputs) * (eloc - ene)).mean().real
         loss.backward()
         optimizer.step()
-        scheduler.step()
+        #scheduler.step()
         print(counter, ene, file=sys.stderr)
     print("finish")
     print("used Adam and learning schedular(stepLR)")

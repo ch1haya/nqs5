@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 15
+seed = 1
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
