@@ -28,13 +28,19 @@ class Net(nn.Module):
         #self.fc = cn.ComplexLinear(L*L*Net.nc[Net.nlayer-1], 2, bias=False)
         self.fc = cn.ComplexLinear(L*L*Net.nc[Net.nlayer-1], 1, bias=False)
         self.crelu = cn.ComplexReLU()
+        self.iniact = cn.initialactivation()
+        self.subact = cn.Subseqactivation()
 
     def forward(self, x):
         x = x.view(-1, 1, L, L)
+        #x = F.pad(x, (0, 1, 0, 1),mode='circular')  # padding for 2x2
+        #x = self.iniact(self.conv_layers[0](x*1e-1))
         for n in range(Net.nlayer):
             x = F.pad(x, (0, 1, 0, 1),mode='circular')  # padding for 2x2
+            #x = self.subact(self.conv_layers[n](x))
             x = self.crelu(self.conv_layers[n](x))
         x = x.view(-1, L*L*Net.nc[Net.nlayer-1])
+        #x = torch.cosh(x)
         x = self.fc(x)
         x = x.view(-1)
         #x = x.view(-1, 2)

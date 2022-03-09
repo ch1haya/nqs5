@@ -1,0 +1,158 @@
+このファイルは、ネットワーク構造を変化させます
+finish
+used Radam and learning schedular(stepLR)
+Net(
+  (conv_layers): ModuleList(
+    (0): ComplexConv2d(
+      (conv_real): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+    (1): ComplexConv2d(
+      (conv_real): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+  )
+  (fc): ComplexLinear(
+    (linear_real): Linear(in_features=32, out_features=1, bias=False)
+    (linear_imag): Linear(in_features=32, out_features=1, bias=False)
+  )
+  (crelu): ComplexReLU()
+  (iniact): initialactivation()
+  (subact): Subseqactivation()
+)
+original U:10
+to U,-t,delta,NSAMPLE 1 -1 0.001 1024
+site : 2
+seed: 15
+use sr
+0.0 -11.664124 0.27490854263305664 -0.00032120246889320414
+0.001 -11.986395 0.2912569046020508 -7.793910330246944e-05
+このファイルは、ネットワーク構造を変化させます
+finish
+used Radam and learning schedular(stepLR)
+Net(
+  (conv_layers): ModuleList(
+    (0): ComplexConv2d(
+      (conv_real): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+    (1): ComplexConv2d(
+      (conv_real): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+  )
+  (fc): ComplexLinear(
+    (linear_real): Linear(in_features=32, out_features=1, bias=False)
+    (linear_imag): Linear(in_features=32, out_features=1, bias=False)
+  )
+  (crelu): ComplexReLU()
+  (iniact): initialactivation()
+  (subact): Subseqactivation()
+)
+original U:10
+to U,-t,delta,NSAMPLE 1 -1 0.001 1024
+site : 2
+seed: 10
+use sr
+0.0 -11.524826 0.27220964431762695 0.000182783536752115
+0.002 -11.695842 0.27939558029174805 0.0005731846431016022
+0.001 -11.654232 0.27866411209106445 0.00010419889111924711
+0.003 -11.627776 0.27312707901000977 -0.0007804606377080617
+0.002 -11.493406 0.26926279067993164 0.0003883885128006334
+0.004 -11.815771 0.28575944900512695 -0.00024540462927227525
+0.003 -11.478429 0.2682023048400879 0.0003482549194000418
+0.005 -11.394178 0.26099300384521484 0.00021534955794926807
+0.004 -11.902891 0.2918562889099121 0.00030806995051742405
+0.006 -11.822539 0.28783655166625977 0.00019090353902705964
+0.005 -11.859725 0.28855180740356445 -8.037728904229631e-07
+0.007 -11.599745 0.27384233474731445 5.2352591323857545e-05
+0.006 -11.68575 0.2771477699279785 7.938576693940516e-05
+0.008 -11.786373 0.2866530418395996 3.035899722277898e-05
+0.007 -11.452849 0.26548337936401367 8.859158567600991e-05
+0.009000000000000001 -11.863865 0.29007768630981445 -0.00027804595650237604
+0.008 -11.906517 0.29304075241088867 0.00014722258200455663
+0.01 -11.495615 0.26673269271850586 -0.00019053846235176698
+0.009000000000000001 -11.53535 0.271848201751709 8.362794477759572e-05
+0.011 -11.688757 0.2775397300720215 -0.00019736606626049178
+0.012 -11.679655 0.2772064208984375 0.0002538813671220647
+0.01 -11.379888 0.2629408836364746 -0.00021871153397932025
+0.013000000000000001 -11.518736 0.2688627243041992 6.628898724324814e-05
+al): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+    (1): ComplexConv2d(
+      (conv_real): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+  )
+  (fc): ComplexLinear(
+    (linear_real): Linear(in_features=32, out_features=1, bias=False)
+    (linear_imag): Linear(in_features=32, out_features=1, bias=False)
+  )
+  (crelu): ComplexReLU()
+  (iniact): initialactivation()
+  (subact): Subseqactivation()
+)
+original U:10
+to U,-t,delta,NSAMPLE 1 -1 0.001 1024
+site : 2
+seed: 1
+use sr
+0.0 -13.053871 1.0210661888122559 3.0178139739495696e-05
+0.001 -13.203223 1.0053958892822266 2.5878960658829045e-05
+0.002 -13.233496 0.9867300987243652 5.5274488450900115e-05
+0.003 -13.287748 0.9832644462585449 4.6757517078075276e-05
+0.004 -13.169464 0.9857192039489746 5.360261311095994e-05
+0.005 -12.975582 1.0297980308532715 4.6831206283984346e-05
+0.006 -13.06332 1.0331673622131348 3.892311645822279e-05
+0.007 -13.126115 1.003847599029541 2.7463086562964927e-05
+0.008 -12.987953 1.036515712738037 8.320143641369123e-08
+0.009000000000000001 -13.11431 1.0106878280639648 7.832664364204184e-06
+0.01 -13.14578 1.0075383186340332 4.482264204370544e-05
+0.011 -13.348064 0.9854264259338379 3.1049923636521606e-06
+0.012 -13.190166 0.9941229820251465 -3.6354442259072614e-06
+0.013000000000000001 -13.153249 1.0023560523986816 4.426787554664745e-05
+0.014 -13.277138 0.9964351654052734 2.5201049104249338e-05
+0.015 -13.310893 0.9853134155273438 5.2895767953601915e-05
+0.016 -13.088333 0.9962582588195801 1.6511028080362205e-05
+0.017 -13.190174 0.9935054779052734 4.4768899104312285e-05
+0.018000000000000002 -13.026339 1.0189452171325684 3.217809899095852e-05
+0.019 -13.410997 0.9560732841491699 2.859932347506792e-05
+0.02 -13.331729 0.9786362648010254 2.836085892106484e-05
+このファイルは、ネットワーク構造を変化させます
+finish
+used Adam and learning schedular(stepLR)
+Net(
+  (conv_layers): ModuleList(
+    (0): ComplexConv2d(
+      (conv_real): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(1, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+    (1): ComplexConv2d(
+      (conv_real): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+      (conv_imag): Conv2d(8, 8, kernel_size=(2, 2), stride=(1, 1), padding_mode=circular)
+    )
+  )
+  (fc): ComplexLinear(
+    (linear_real): Linear(in_features=32, out_features=1, bias=False)
+    (linear_imag): Linear(in_features=32, out_features=1, bias=False)
+  )
+  (crelu): ComplexReLU()
+  (iniact): initialactivation()
+  (subact): Subseqactivation()
+)
+original U:10
+to U,-t,delta,NSAMPLE 1 -1 0.001 1024
+site : 2
+seed: 10
+use sr
+0.0 -13.023005 1.0434012413024902 1.2102333110462257e-05
+0.021 -13.1975765 1.0103116035461426 2.8777516163618506e-05
+0.001 -13.15296 1.0076518058776855 -1.8196478313331054e-05
+0.022 -13.013256 1.01865816116333 2.6952929426859977e-05
+0.002 -13.136672 0.9976229667663574 4.349517669657784e-05
+0.023 -13.263198 0.982445240020752 4.281512244644789e-05
+0.003 -13.252693 0.9974532127380371 3.647249140082205e-05
+0.024 -12.959291 1.039355754852295 3.309789608005859e-05
+0.004 -13.12122 1.0104594230651855 4.957974704521906e-05
+0.025 -12.960901 1.022505760192871 2.4871033858562116e-05

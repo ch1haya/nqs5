@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 10
+seed = 15
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -34,6 +34,8 @@ J = 1
 learn_r = 1000
 select = 1 #2を入力すると逐次収束法で計算されます
 
+
+print("このファイルは、ネットワーク構造を変化させます")
 
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide

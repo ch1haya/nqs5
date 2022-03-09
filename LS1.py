@@ -2,13 +2,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.functional import F
+from torch.optim import lr_scheduler
 import complexnet as cn
 import torch.optim as optim
 import copy
 import sys
 import sr
 import networkconfig as nc
-
 
 seed = 0
 torch.manual_seed(seed)
@@ -144,7 +144,9 @@ net = net.to(device)
 cn.add_hooks(net)
 cn.disable_hooks()
 
-optimizer = optim.RAdam(net.parameters(),lr = 0.001)
+optimizer = optim.Adam(net.parameters(),lr = 0.0001)
+scheduler = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.5)
+
 
 state = SampledState()
 state.thermalize(net)
@@ -178,10 +180,10 @@ def main2(i):
         loss = (torch.conj(outputs) * (eloc - ene)).mean().real
         loss.backward()
         optimizer.step()
-
+        scheduler.step()
         print(counter, ene, file=sys.stderr)
     print("finish")
-    print("used Radam and learning schedular(stepLR)")
+    print("used Adam and learning schedular(stepLR)")
     PATH = 'learnedst'
     torch.save(net.state_dict(),PATH)
 
