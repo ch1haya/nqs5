@@ -11,7 +11,7 @@ import complexnet as cn
 import torch.optim as optim
 import copy
 import sys
-import LS1 as ls
+import ls_test as ls
 import timedev as timedev
 import networkconfig as nc
 
@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 2
+seed = 1
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -233,7 +233,7 @@ def td_conv(time):
 ls.main2(learn_r)
 
 net = nc.Net()
-net.load_state_dict(torch.load('learnedst'))
+net.load_state_dict(torch.load('learnedst_test')) #test method
 
 state = SampledState()
 
@@ -244,8 +244,8 @@ cn.add_hooks(net)
 cn.disable_hooks()
 
 U = 1;
-delta = 1e-3
-tole = 1e-7
+delta = 1e-5
+tole = 1e-9
 
 
 energy = []

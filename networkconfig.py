@@ -7,7 +7,7 @@ import torch.optim as optim
 import copy
 import sys
 import sr
-import LS1 as ls
+#import LS1 as ls
 
 L = 2
 
