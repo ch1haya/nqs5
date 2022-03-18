@@ -31,7 +31,7 @@ NSAMPLE = 1024
 U = 10
 J = 1
 
-learn_r = 1000
+learn_r = 2000
 select = 1 #2を入力すると逐次収束法で計算されます
 
 
