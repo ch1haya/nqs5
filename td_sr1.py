@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 10
+seed = 15
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -27,7 +27,7 @@ torch.backends.cudnn.deterministic = True
 
 L = 2
 NP = L * L
-NSAMPLE = 1024
+NSAMPLE = 10000
 U = 10
 J = 1
 
@@ -248,7 +248,7 @@ cn.add_hooks(net)
 cn.disable_hooks()
 
 U = 1;
-delta = 1e-4
+delta = 1e-3
 tole = 1e-7
 
 
