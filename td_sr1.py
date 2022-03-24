@@ -234,7 +234,7 @@ def td_conv(time):
                 break
 
 
-ls.main1(learn_r)
+ls.main2(learn_r)
 
 net = nc.Net()
 net.load_state_dict(torch.load('learnedst'))
@@ -249,7 +249,7 @@ cn.disable_hooks()
 
 U = 1;
 delta = 1e-3
-tole = 1e-7
+tole = 1e-10
 
 
 energy = []
@@ -272,7 +272,7 @@ print('seed:',seed)
 
 if select == 1:
     print('use sr')
-    td_sr(3.0)
+    td_sr(2.0)
 else:
     print('use conv')
     td_conv(1)
