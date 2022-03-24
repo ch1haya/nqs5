@@ -2,7 +2,6 @@ import os
 os.environ["OPENBLAS_NUM_THREADS"] = "32"
 os.environ["MKL_NUM_THREADS"] = "32"
 os.environ["VECLIB_NUM_THREADS"] = "32"
-
 import numpy as np
 import torch
 import torch.nn as nn
@@ -19,7 +18,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 1
+seed = 15
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -39,7 +38,7 @@ print("このファイルは、ネットワーク構造を変化させます")
 
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide
-device = torch.device("cuda:0")
+device = torch.device("cuda:1")
 
 
 class SampledState:
