@@ -19,7 +19,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 
-seed = 15
+seed = 1
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
@@ -27,7 +27,7 @@ torch.backends.cudnn.deterministic = True
 
 L = 2
 NP = L * L
-NSAMPLE = 10000
+NSAMPLE = 1000
 U = 10
 J = 1
 
@@ -234,7 +234,7 @@ def td_conv(time):
                 break
 
 
-ls.main2(learn_r)
+ls.main1(learn_r)
 
 net = nc.Net()
 net.load_state_dict(torch.load('learnedst'))

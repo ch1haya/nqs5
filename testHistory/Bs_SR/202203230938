@@ -1,0 +1,5 @@
+このファイルは、ネットワーク構造を変化させます
+Traceback (most recent call last):
+  File "td_sr1.py", line 237, in <module>
+    ls.main1(learn_r)
+AttributeError: module 'LS1' has no attribute 'main1'
