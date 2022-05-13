@@ -38,7 +38,7 @@ print("このファイルは、ネットワーク構造を変化させます")
 
 eloc_divide = 1
 eloc_samples = NSAMPLE // eloc_divide
-device = torch.device("cuda:1")
+device = torch.device("cuda:0")
 
 
 class SampledState:
@@ -248,7 +248,7 @@ cn.disable_hooks()
 
 U = 1;
 delta = 1e-3
-tole = 1e-10
+tole = 1e-8
 
 
 energy = []
@@ -259,7 +259,7 @@ energy = []
 flucmean = []
 fluc = []
 
-
+select =2
 #main
 
 print(net)
