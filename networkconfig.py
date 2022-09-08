@@ -53,5 +53,3 @@ class Net(nn.Module):
             output = self.forward(x)
         return output.to("cpu").detach().numpy()
 
-class Net2(nn.Module):
-
